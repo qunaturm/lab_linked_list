@@ -44,7 +44,7 @@ public:
 		if (index == 0)
 		{
 			Head = Head->Next;
-			return;
+			Count -= 1;
 		}
 		if (index == (Count - 1))
 		{
@@ -55,7 +55,7 @@ public:
 				curr = curr->Next;
 			}
 			Tail = curr;
-			return;
+			Count -= 1;
 		}
 		else 
 		{
@@ -69,7 +69,7 @@ public:
 			}
 			curr = curr.Next;
 			prev.Next = curr;
-			return;
+			Count -= 1;
 
 		}
 	}
@@ -78,39 +78,69 @@ public:
 	{
 		if (Head != 0)
 		{
-			Node<T> item = new Node<T>(data);
+			Node<T>(data) item;
 			Tail->Next = item;
 			Tail = item;
 			Count += 1;
-			return;
 		}
 		else
 		{
-			Node<T> item = new Node<T>(data);
+			Node<T>(data) item;
 			Head = Tail = item;
 			Count = 1;
-			return;
 		}
 	}
 
-
-	LinkedList<T> operator[](int index)
+	void Insert(int index, T data)
 	{
 		assert(0 < index < Count);
-		int i = 0;
-		Node<T> curr = Head->Next;
-		Node<T> prev = Head;
-		while (i != index)
+		Node<T>(data) item;
+		if (index == 0)
 		{
-			prev = curr;
-			curr = curr->Next;
+			item.Next = Head;
+			Head = item;
+			Count += 1;
 		}
-		delete prev;
-		return &curr;
-		delete curr; //оно сработает или нет?
+		if (index == (Count - 1))
+		{
+			PushBack(item);
+			Count += 1;
+		}
+		else
+		{
+			int i = 0;
+			Node<T> curr = Head->Next;
+			Node<T> prev = Head;
+			while (i != index)
+			{
+				prev = curr;
+				curr = curr->Next;
+			}
+			prev.Next = item;
+			curr = curr.Next;
+			item.Next = curr;
+			Count += 1;
+		}
 	}
 
-	std::ostream& operator<<(std::ostream& out, const LinkedList<T>& list)
+
+	//LinkedList<T> operator[](int index)
+	//{
+	//	assert(0 < index < Count);
+	//	int i = 0;
+	//	Node<T> curr = Head->Next;
+	//	Node<T> prev = Head;
+	//	while (i != index)
+	//	{
+	//		prev = curr;
+	//		curr = curr->Next;
+	//	}
+	//	delete prev;
+	//	return &curr;
+	//	delete curr; //оно сработает или нет?
+	//}
+
+	/*std::ostream& operator<<(std::ostream& out, const LinkedList<T>& list)
 	{
 		int i = 0;
 		while (i != list.Count)
@@ -119,6 +149,6 @@ public:
 			i += 1;
 			return out;
 		}
-	}
+	}*/
 };
 
