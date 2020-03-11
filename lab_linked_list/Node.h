@@ -4,7 +4,7 @@
 template <typename T> class Node
 {
 	T data = 0;
-	Node* Next;
+	Node* Next; 
 	Node(T d) : data(d) {}
 };
 

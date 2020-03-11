@@ -13,7 +13,7 @@ public:
 
 	LinkedList()
 	{
-		Head = 0;
+		Head = 0; 
 		Tail = 0;
 		Count = 0;
 	}
@@ -32,12 +32,12 @@ public:
 		int i = 0;
 		Node<T> curr = Head->Next;
 		Node<T> prev = Head;
-		while (i != Count)
+		while (i != index)
 		{
 			prev = curr;
 			curr = curr->Next;
 		}
-		return *curr;
+		return &curr;
 	}
 
 	int GetSize()
